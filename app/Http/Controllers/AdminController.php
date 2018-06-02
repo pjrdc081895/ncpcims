@@ -19,7 +19,7 @@ class AdminController extends Controller
     public function search(){
 
 			
-            admin search for acccounts
+            //admin search for acccounts
     		if(auth()->user()->role_id===1){
     			$message=[];
 				$accounts =[];
