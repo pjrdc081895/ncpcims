@@ -1,0 +1,68 @@
+@extends('layout_master.master')
+
+@section('content')
+
+	<div class="flex-center position-ref full-height">
+        @include('partials.identifier')
+
+        @if(auth()->user()->username=="admin")
+
+			<div class="card">
+					<div class="card-block">	
+						<div class="addComment">
+							
+							<form method="GET" action="/search">
+
+
+								<div class="form-group">
+									
+									<div class="form-group">
+										<center><label for="search">SEARCH YEAR</label></center>
+										<input type="number" name="search" id="search" class="form-control" placeholder="YEAR" required >
+									</div>
+									
+									<div class="form-group">
+										<button class="form-control	" type="submit">SEARCH</button>
+									</div>
+
+								</div>						
+								
+							</form>
+						</div>
+					
+					</div>
+							@include('partials.errors')
+
+							<ul class="list-group">
+										
+									
+										@if($accounts)
+
+												@foreach($accounts as $account)
+												
+															<li class="list-group-item"> 
+																<strong>{{$account->created_at->diffForHumans()}}</strong>
+																{{ $account->username }} {{ $account->email }} 
+																
+															</li>
+				
+												@endforeach
+
+										@else
+
+														@if($message)
+															<center><h1><strong>{{$message['noRec']}}</strong></h1></center>
+														@endif
+
+										@endif			
+							</ul>
+				</div>
+		@else
+			
+        @endif
+        
+    </div>
+
+	
+
+@endsection
